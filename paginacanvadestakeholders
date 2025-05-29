@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stakeholder Persona Canvas</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(45deg, #2c3e50, #3498db);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .instructions {
+      background: linear-gradient(135deg, #74b9ff, #0984e3);
+      color: white;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 15px;
+    }
+
+    .instructions ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .instructions li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .instructions li::before {
+      content: '➤';
+      position: absolute;
+      left: 0;
+      color: #fdcb6e;
+    }
+
+    form.canvas {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .section {
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 20px;
+      border-left: 6px solid;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .section h3 {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      color: #2c3e50;
+    }
+
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 0.9rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .basic-info { border-left-color: #e74c3c; }
+    .basic-info .icon { background: #e74c3c; }
+    .emotional { border-left-color: #f39c12; }
+    .emotional .icon { background: #f39c12; }
+    .motivations { border-left-color: #2ecc71; }
+    .motivations .icon { background: #2ecc71; }
+    .communication { border-left-color: #3498db; }
+    .communication .icon { background: #3498db; }
+    .resistance { border-left-color: #9b59b6; }
+    .resistance .icon { background: #9b59b6; }
+    .engagement { border-left-color: #1abc9c; }
+    .engagement .icon { background: #1abc9c; }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .input-group input, 
+    .input-group textarea, 
+    .input-group select {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .input-group input:focus, 
+    .input-group textarea:focus, 
+    .input-group select:focus {
+      outline: none;
+      border-color: #3498db;
+    }
+
+    .input-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+      flex-wrap: wrap;
+      background: #f8f9fa;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #3498db, #2980b9);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+      color: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🎯 Stakeholder Persona Canvas</h1>
+      <p>Ferramenta de Mapeamento Profundo de Stakeholders para Change Management</p>
+    </header>
+
+    <section class="instructions">
+      <h4>📋 Como usar esta ferramenta:</h4>
+      <ul>
+        <li>Preencha cada seção com informações específicas sobre seu stakeholder.</li>
+        <li>Use dados reais coletados através de entrevistas, observação e pesquisas.</li>
+        <li>Foque em comportamentos observáveis, não suposições.</li>
+        <li>Revise e atualize regularmente durante o processo de mudança.</li>
+        <li>Use as informações para personalizar sua estratégia de engajamento.</li>
+      </ul>
+    </section>
+
+    <form class="canvas" aria-label="Formulário de mapeamento de stakeholder">
+      <fieldset class="section basic-info">
+        <legend><h3><span class="icon">1</span>Informações Básicas</h3></legend>
+        <div class="input-group">
+          <label for="name">Nome/Título do Stakeholder</label>
+          <input type="text" id="name" name="name" placeholder="Ex: Maria Silva - Gerente de Operações">
+        </div>
+        <div class="input-group">
+          <label for="role">Função/Departamento</label>
+          <input type="text" id="role" name="role" placeholder="Ex: Liderança de equipe de 15 pessoas">
+        </div>
+        <div class="input-group">
+          <label for="influence">Nível de Influência</label>
+          <select id="influence" name="influence">
+            <option value="">Selecione...</option>
+            <option value="alto">Alto - Decisor final</option>
+            <option value="medio">Médio - Influencia decisões</option>
+            <option value="baixo">Baixo - Recebe decisões</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="interest">Nível de Interesse na Mudança</label>
+          <select id="interest" name="interest">
+            <option value="">Selecione...</option>
+            <option value="alto">Alto</option>
+            <option value="medio">Médio</option>
+            <option value="baixo">Baixo</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <!-- Outras seções seguem o mesmo padrão -->
+
+    </form>
+
+    <div class="actions">
+      <button type="submit" class="btn btn-primary">Salvar</button>
+      <button type="reset" class="btn btn-secondary">Limpar</button>
+    </div>
+  </div>
+</body>
+</html>
